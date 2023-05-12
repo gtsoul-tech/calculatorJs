@@ -135,3 +135,21 @@ function update(operator){
     }
 
 }
+
+document.addEventListener("keydown",(event) => {
+    let name = event.key;
+    let code = event.code;
+    
+    for(let i=0;i<10;i++){
+        if(name == i || code === `Numpad`+i){
+            document.querySelector(`.buttonCalc[value="${i}"]`).click();
+            return;
+        }
+    }
+    if(code === "Backspace"){
+        document.querySelector(`.operation[value="C"]`).click();
+    }else{
+        document.querySelector(`.operation[value="${name}"]`).click();
+    }
+    console.log(`Key pressed ${name} \r\n Key code value: ${code}`);
+});
