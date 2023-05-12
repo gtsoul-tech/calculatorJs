@@ -76,8 +76,72 @@ body{
 #sum{
     flex:1 1 1;
     height: 163px;
+    background-color: rgb(201, 173, 50);
+    box-shadow:0px 5px rgb(116, 95, 2);
+}
+#sum:active{
+    opacity: 0.3;
+    box-shadow:0px -2px rgb(116, 95, 2);
 }
 .githubLogo{
     width: 20px;
     height: 20px;
 }
+
+.mainButtons{
+    background-color: red;
+    box-shadow:0px 5px rgb(71, 2, 2);
+}
+.mainButtons:active{
+    opacity: 0.3;
+    box-shadow:0px -2px rgb(71, 2, 2);
+}
+#equal{
+    background-color: blue;
+    box-shadow:0px 5px rgb(17, 0, 90);
+}
+#equal:active{
+    opacity: 0.3;
+    box-shadow:0px -2px rgb(17, 0, 90);
+}
+#multiply{
+    background-color: green;
+    box-shadow:0px 5px rgb(0, 63, 0);
+}
+#multiply:active{
+    opacity: 0.3;
+    box-shadow:0px -2px rgb(0, 63, 0);
+}
+#divide{
+    background-color: rgb(128, 0, 117);
+    box-shadow:0px 5px rgb(71, 0, 65);
+}
+#divide:active{
+    opacity: 0.3;
+    box-shadow:0px -2px rgb(71, 0, 65);
+}
+#subtract{
+    background-color: rgb(0, 119, 128);
+    box-shadow:0px 5px rgb(0, 60, 65);
+}
+#subtract:active{
+    opacity: 0.3;
+    box-shadow:0px -2px rgb(0, 60, 65);
+}
+#comma{
+    background-color: rgb(0, 128, 79);
+    box-shadow:0px 5px rgb(0, 70, 43);
+}
+#comma:active{
+    opacity: 0.3;
+    box-shadow:0px -2px rgb(0, 70, 43);
+}
+#percentage{
+    background-color: rgb(128, 0, 64);
+    box-shadow:0px 5px rgb(66, 0, 33);
+}
+#percentage:active{
+    opacity: 0.3;
+    box-shadow:0px -2px rgb(66, 0, 33);
+}
+
