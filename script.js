@@ -57,14 +57,28 @@ function deleteOne(){
     }
 }
 function setUpCurrent(display){
+    console.log(display);
+    const fixed= fixOverFlows(display);
     if(display.includes(".")){
-        currentText.textContent= display;
-        first=parseFloat(display,10);
+        currentText.textContent= fixed;
+        first=parseFloat(fixed,10);
     }else{
-        first=parseFloat(display,10);
+        first=parseFloat(fixed,10);
         currentText.textContent= first;
         
     }
+}
+function fixOverFlows(display){
+    if(display.length> 9){
+        const [beforeComma,afterComma] = display.split(".");
+        console.log(display);
+        if(afterComma === undefined){
+            return Number.parseFloat(display).toExponential("4")//scientific thing
+        }else if(afterComma.length > 4){
+            return parseFloat(display,10).toFixed(2);   // too many after comma
+        }
+    }
+    return display;
 }
 
 const numbers= document.querySelectorAll(".number");
@@ -92,9 +106,9 @@ function update(operator){
     }else if ( op === "="){
         if(upperDisplay !== "" && isNaN(upperText.textContent)){
             upperDisplay = operation(second,first,upperText.textContent[upperText.textContent.length-1]);
-            upperText.textContent = upperDisplay + " ";
-            currentText.textContent= upperDisplay;
-            first=upperDisplay;
+            upperText.textContent = fixOverFlows(upperDisplay.toString()) + " ";
+            
+            setUpCurrent(upperDisplay.toString());
             second=upperDisplay;
         }else{
             return;
@@ -102,8 +116,8 @@ function update(operator){
     }else{
 
         if(upperDisplay ===""){
-            upperDisplay = currentDisplay;
-            upperText.textContent = currentText.textContent + op;
+            upperDisplay = fixOverFlows(currentDisplay.toString());
+            upperText.textContent = fixOverFlows(currentText.textContent.toString()) + op;
             second=first;
             setUpCurrent("0");
         }else{
@@ -112,8 +126,3 @@ function update(operator){
     }
 
 }
-
-/* otan exei upperdisplay tote bazw to second
-    otan mpei to second stelnw sto current to apotelesma
-
-*/

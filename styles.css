@@ -31,11 +31,13 @@ body{
     flex: 1;
 }
 #screenText{
+    flex: 1;
     margin-right: 20px;
     font-size: 36px;
     font-weight: bold;
 }
 #currentText{
+    flex:2;
     margin-right: 20px;
     font-size: 64px;
     font-weight: bold;
