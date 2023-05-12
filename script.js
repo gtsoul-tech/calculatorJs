@@ -50,12 +50,20 @@ function clear(){
 }
 function deleteOne(){
     if(currentText.textContent.length === 1){
-        currentDisplay="0";
-        currentText.textContent="0";
-        first=0;
+        setUpCurrent("0");
     }else{
-        currentText.textContent= currentText.textContent.substring(0, currentText.textContent.length-1);
-        first=parseFloat(currentText.textContent,10);
+        setUpCurrent(currentText.textContent.substring(0, currentText.textContent.length-1));
+        
+    }
+}
+function setUpCurrent(display){
+    if(display.includes(".")){
+        currentText.textContent= display;
+        first=parseFloat(display,10);
+    }else{
+        first=parseFloat(display,10);
+        currentText.textContent= first;
+        
     }
 }
 
@@ -63,13 +71,8 @@ const numbers= document.querySelectorAll(".number");
 numbers.forEach(function(number){
     number.addEventListener("click", () => {
         currentDisplay = number.getAttribute("value");
-        if(currentText.textContent.includes(".")){
-            currentText.textContent = currentText.textContent + currentDisplay.toString();
-            first = parseFloat(currentText.textContent,10);
-        }else{
-            first= parseFloat(currentText.textContent + currentDisplay.toString(),10);
-            currentText.textContent= first;
-        }});
+        setUpCurrent(currentText.textContent + currentDisplay.toString());
+        });
 });
 
 const operators=document.querySelectorAll(".operation");
@@ -84,8 +87,7 @@ function update(operator){
         deleteOne();
     }else if( op === "."){
         if(Number.isInteger(first)){
-            currentText.textContent= first + ".";
-            first= parseFloat(currentText.textContent,10);
+            setUpCurrent(first + ".");
         }
     }else if ( op === "="){
         if(upperDisplay !== "" && isNaN(upperText.textContent)){
@@ -102,9 +104,8 @@ function update(operator){
         if(upperDisplay ===""){
             upperDisplay = currentDisplay;
             upperText.textContent = currentText.textContent + op;
-            currentText.textContent="0";
             second=first;
-            first=0;
+            setUpCurrent("0");
         }else{
             upperText.textContent = upperText.textContent.slice(0,upperText.textContent.length-1) + op;
         }
