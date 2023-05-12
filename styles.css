@@ -1,3 +1,77 @@
 body{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: orange;
+}
+
+#mainBody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(48, 49, 49);
+    color: white;
+    width: 400px;
+    height: 600px;
+    border-radius: 20px;
+    box-shadow: 0px -2px rgb(26, 25, 25), 0px 10px rgb(26, 25, 25);
+}
+#screen{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 340px;
+    height: 100px;
+    margin: 30px;
+    background-color: rgb(197, 188, 188);
+    color: black;
+    border-radius: 25px;
+    box-shadow: 0px -2px rgb(90, 86, 86), 0px 2px rgb(90, 86, 86);
+    flex: 1;
+}
+#screenText{
+    margin-right: 20px;
+    font-size: 36px;
+    font-weight: bold;
+}
+#currentText{
+    margin-right: 20px;
+    font-size: 64px;
+    font-weight: bold;
+}
+#buttons{
+    flex: 4;
+    display: flex;
+    justify-content: space-around;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    height:400px;
+}
+.buttonCalc{
+    flex: 1 1 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    width: 70px;
+    height: 70px;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 32px;
+    box-shadow:0px 5px rgb(87, 86, 86);
+}
+.buttonCalc:hover{
+    opacity: 0.8;
+}
+.buttonCalc:active{
+    opacity: 0.3;
+    box-shadow:0px -2px rgb(87, 86, 86);
+}
+#sum{
+    flex:1 1 1;
+    height: 163px;
 }
