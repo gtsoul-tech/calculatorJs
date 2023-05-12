@@ -57,7 +57,7 @@ function deleteOne(){
     }
 }
 function setUpCurrent(display){
-    console.log(display);
+    //console.log(display);
     const fixed= fixOverFlows(display);
     if(display.includes(".")){
         currentText.textContent= fixed;
@@ -65,15 +65,14 @@ function setUpCurrent(display){
     }else{
         first=parseFloat(fixed,10);
         currentText.textContent= first;
-        
     }
 }
 function fixOverFlows(display){
     if(display.length> 9){
         const [beforeComma,afterComma] = display.split(".");
-        console.log(display);
+        //console.log(display);
         if(afterComma === undefined){
-            return Number.parseFloat(display).toExponential("4")//scientific thing
+            return Number.parseFloat(display).toExponential("4");//scientific thing
         }else if(afterComma.length > 4){
             return parseFloat(display,10).toFixed(2);   // too many after comma
         }
@@ -91,12 +90,14 @@ numbers.forEach(function(number){
 
 const operators=document.querySelectorAll(".operation");
 operators.forEach(function(operator){
-    operator.addEventListener("click", () => update(operator.getAttribute("value")));
+    operator.addEventListener("click", () => update(operator));
 });
 function update(operator){
-    op=operator;
+    op=operator.getAttribute("value");
     if( op === "AC"){
         clear();
+        const divideOperator = document.querySelector("#divide");
+        divideOperator.classList.remove("broken");
     }else if( op === "C"){
         deleteOne();
     }else if( op === "."){
@@ -105,7 +106,16 @@ function update(operator){
         }
     }else if ( op === "="){
         if(upperDisplay !== "" && isNaN(upperText.textContent)){
-            upperDisplay = operation(second,first,upperText.textContent[upperText.textContent.length-1]);
+            const lastOp=upperText.textContent[upperText.textContent.length-1];
+            if(first === 0 && lastOp ==="/"){
+                alert("Dont divide by zero you broke it,Use AC to fix it");
+                clear();
+                const divideOperator = document.querySelector("#divide");
+                divideOperator.classList.add("broken");
+                return;
+            }
+
+            upperDisplay = operation(second,first,lastOp);
             upperText.textContent = fixOverFlows(upperDisplay.toString()) + " ";
             
             setUpCurrent(upperDisplay.toString());
@@ -114,7 +124,6 @@ function update(operator){
             return;
         }
     }else{
-
         if(upperDisplay ===""){
             upperDisplay = fixOverFlows(currentDisplay.toString());
             upperText.textContent = fixOverFlows(currentText.textContent.toString()) + op;
